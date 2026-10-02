@@ -55,6 +55,15 @@ LITE_OS_SEC_TEXT VOID OsTickHandler(VOID)
 {
     UINT32 intSave;
 
+#if defined(LOSCFG_PLATFORM_ADAPT)
+    extern void HAL_IncTick(void);
+    HAL_IncTick();
+#endif
+
+    if (!OS_SCHEDULER_ACTIVE) {
+        return;
+    }
+
     TICK_LOCK(intSave);
     g_tickCount[ArchCurrCpuid()]++;
     TICK_UNLOCK(intSave);

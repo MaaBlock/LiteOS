@@ -29,4 +29,19 @@
 #ifndef _BOARD_H
 #define _BOARD_H
 
+#include "los_typedef.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+VOID board_config(VOID);
+UINT32 LOS_KernelInit(VOID);
+VOID LOS_Start(VOID);
+VOID LiteOS_CppSystemInit(VOID);
+
+#ifdef __cplusplus
+}
+#endif
+
 #endif /* _BOARD_H */

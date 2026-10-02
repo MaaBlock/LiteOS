@@ -102,7 +102,7 @@ LITE_OS_SEC_TEXT_INIT STATIC UINT32 OsSemCreate(UINT16 count, UINT8 type, UINT32
     LOS_ListInit(&semCreated->semList);
     *semHandle = semCreated->semId;
 
-    OsSemDbgUpdateHook(semCreated->semId, OsCurrTaskGet()->taskEntry, count);
+    OsSemDbgUpdateHook(semCreated->semId, (OsCurrTaskGet() != NULL) ? OsCurrTaskGet()->taskEntry : NULL, count);
 
     SCHEDULER_UNLOCK(intSave);
 

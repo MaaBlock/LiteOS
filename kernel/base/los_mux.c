@@ -103,7 +103,7 @@ LITE_OS_SEC_TEXT UINT32 LOS_MuxCreate(UINT32 *muxHandle)
     LOS_ListInit(&muxCreated->muxList);
     *muxHandle = muxCreated->muxId;
 
-    OsMuxDbgUpdateHook(muxCreated->muxId, OsCurrTaskGet()->taskEntry);
+    OsMuxDbgUpdateHook(muxCreated->muxId, (OsCurrTaskGet() != NULL) ? OsCurrTaskGet()->taskEntry : NULL);
 
     SCHEDULER_UNLOCK(intSave);
 

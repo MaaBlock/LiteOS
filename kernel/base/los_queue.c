@@ -119,7 +119,7 @@ LITE_OS_SEC_TEXT_INIT STATIC UINT32 OsQueueCreateInternal(UINT16 len, UINT32 *qu
     LOS_ListInit(&queueCB->readWriteList[OS_QUEUE_WRITE]);
     LOS_ListInit(&queueCB->memList);
 
-    OsQueueDbgUpdateHook(queueCB->queueId, OsCurrTaskGet()->taskEntry);
+    OsQueueDbgUpdateHook(queueCB->queueId, (OsCurrTaskGet() != NULL) ? OsCurrTaskGet()->taskEntry : NULL);
     SCHEDULER_UNLOCK(intSave);
 
     *queueId = queueCB->queueId;

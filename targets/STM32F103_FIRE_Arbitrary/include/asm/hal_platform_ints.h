@@ -31,7 +31,9 @@
 
 #include "stm32f103xe.h"
 #include "los_typedef.h"
+#if defined(LOSCFG_KERNEL_CPUP) && (LOSCFG_KERNEL_CPUP == 1)
 #include "tim.h"
+#endif
 
 #ifdef __cplusplus
 #if __cplusplus

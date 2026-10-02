@@ -73,7 +73,7 @@ extern "C" {
 #endif
 
 #ifndef LITE_OS_SEC_DATA_VEC
-#define LITE_OS_SEC_DATA_VEC     __attribute__((section(".data.vector")))
+#define LITE_OS_SEC_DATA_VEC     __attribute__((section(".data.vector"), aligned(1024)))
 #endif
 
 #ifndef LITE_OS_SEC_BSS

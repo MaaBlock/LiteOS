@@ -36,6 +36,7 @@
 #ifdef LOSCFG_LIB_LIBC
 #include "unistd.h"
 #endif
+#include "los_printf.h"
 #include "los_memory.h"
 #include "uart.h"
 #ifdef LOSCFG_FS_VFS

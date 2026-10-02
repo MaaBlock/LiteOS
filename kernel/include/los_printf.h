@@ -115,9 +115,12 @@ typedef VOID (*pf_OUTPUT)(const CHAR *fmt, ...);
  * @see printf
  * @since Huawei LiteOS V100R001C00
  */
-extern void dprintf(const char *fmt, ...);
+#include <stdio.h>
+#undef dprintf
+#define dprintf los_dprintf
+extern void los_dprintf(const char *fmt, ...);
 
-#define diag_printf      dprintf
+#define diag_printf      los_dprintf
 
 /**
  * @ingroup los_printf

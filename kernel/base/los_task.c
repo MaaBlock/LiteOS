@@ -928,7 +928,7 @@ STATIC UINT32 OsTaskCreateOnly(UINT32 *taskId, TSK_INIT_PARAM_S *initParam, VOID
     OsTaskCBInit(taskCB, initParam, stackPtr, topStack, useUsrStack);
 
     if (OsConsoleIDSetHook != NULL) {
-        OsConsoleIDSetHook(taskCB->taskId, OsCurrTaskGet()->taskId);
+        OsConsoleIDSetHook(taskCB->taskId, (OsCurrTaskGet() != NULL) ? OsCurrTaskGet()->taskId : 0);
     }
 
 #ifdef LOSCFG_KERNEL_CPUP
@@ -1600,6 +1600,9 @@ LITE_OS_SEC_TEXT_MINOR UINT32 OsTaskProcSignal(VOID)
      * so it keeps recieving signals while follow code excuting.
      */
     runTask = OsCurrTaskGet();
+    if (runTask == NULL) {
+        return 0;
+    }
     if (runTask->signal == SIGNAL_NONE) {
         goto EXIT;
     }
